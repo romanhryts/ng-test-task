@@ -1,0 +1,32 @@
+<div class="w-[80%] py-4 flex gap-[20px] items-center">
+  <input
+    #input
+    type="text"
+    placeholder="Search something..."
+    class="px-4 py-2 outline-none border-2 border-black"
+    (input)="updateTerm(input)"
+  >
+  <label for="filter">Search by:</label>
+  <select
+    #selectFilter id="filter"
+    class="outline-none border-black border-2 py-2"
+    (change)="onSelect(selectFilter)"
+  >
+    <option value="">Choose option</option>
+    <option value="name">Name</option>
+    <option value="desc">Description</option>
+  </select>
+
+  <span class="whitespace-nowrap">Sort by count of pages: </span>
+  <input #sortByPagesASC type="radio" id="pagesASC" name="pages" (input)="onSortByPages(sortByPagesASC)">
+  <label for="pagesASC">ASC</label>
+  <input #sortByPagesDESC type="radio" id="pagesDESC" name="pages" (input)="onSortByPages(sortByPagesDESC)">
+  <label for="pagesDESC">DESC</label>
+
+  <span class="whitespace-nowrap">Sort by date: </span>
+  <input #sortByDateASC type="radio" id="dateASC" name="date" (input)="onSortByDate(sortByDateASC)">
+  <label for="pagesASC">ASC</label>
+  <input #sortByDateDESC type="radio" id="dateDESC" name="date" (input)="onSortByDate(sortByDateDESC)">
+  <label for="pagesDESC">DESC</label>
+
+</div>
