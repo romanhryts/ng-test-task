@@ -1,4 +1,8 @@
 <div class="w-[90%] mx-auto my-3">
+  <a [routerLink]="['chart']" [state]="{data: books}">See the chart</a><br>
+  <hr>
+  <router-outlet></router-outlet>
+  <hr>
   <app-sorting
     (selectEvent)="updateFilter($event)"
     (updateInput)="updateWord($event)"
