@@ -4,7 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { IBook } from '../../../../models/IBook';
 
 interface IChartData {
-  x: string;
+  x: number;
   y: number;
 }
 
@@ -31,16 +31,16 @@ export class ChartComponent implements OnInit {
   }
 
   private initializeChartSeries(): void {
-    const data: IChartData[] = [];
-    this.books.forEach((book: IBook) => {
+    const data: IChartData[] = this.books.reduce((acc: IChartData[], book: IBook) => {
       // try to find book in array with the same date of publishing
-      const idx: number = data.findIndex((el: IChartData) => new Date(el.x) === new Date(book.publishDate));
+      const idx: number = acc.findIndex((el: IChartData) => el.x === new Date(book.publishDate).getFullYear());
       if (idx !== -1) {
-        data[idx].x += 1;
-        return;
+        acc[idx].y++;
+        return acc;
       }
-      data.push({x: new Date(book.publishDate).toDateString(), y: 1});
-    });
+      acc.push({x: new Date(book.publishDate).getFullYear(), y: 1});
+      return acc;
+    }, []);
     this.series = [
       {
         data

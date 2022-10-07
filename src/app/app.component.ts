@@ -13,6 +13,7 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    // just for showing books immediately, because it is the only page in the project
     this.router.navigate(['/books']).catch(error => console.log(error));
   }
 }
